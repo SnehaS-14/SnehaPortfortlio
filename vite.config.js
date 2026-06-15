@@ -5,16 +5,8 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  server: {
-    host: '0.0.0.0',
-    port: process.env.PORT || 3000,
-    strictPort: false,
-    allowedHosts: ['snehaportfortlio.onrender.com', 'localhost']
-  },
-  preview: {
-    host: '0.0.0.0',
-    port: process.env.PORT || 3000,
-    strictPort: false,
-    allowedHosts: ['snehaportfortlio.onrender.com', 'localhost']
+  build: {
+    outDir: 'dist',
+    sourcemap: false
   }
 })

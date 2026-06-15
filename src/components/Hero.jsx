@@ -7,7 +7,8 @@ import heroVideo from '../assets/hero video/Software_engineer_speaking_intro_202
 const Hero = () => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     AOS.init({
@@ -15,8 +16,31 @@ const Hero = () => {
       once: true,
       easing: 'ease-out'
     });
-    // Video does NOT autoplay anymore
-  }, []);
+
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+
+      if (videoRef.current) {
+        if (mobile) {
+          videoRef.current.play();
+          setIsPlaying(true);
+        } else {
+          videoRef.current.pause();
+          setIsPlaying(false);
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    if (isMobile && videoRef.current) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMobile]);
 
   const toggleVideo = (e) => {
     e.stopPropagation();
@@ -39,6 +63,7 @@ const Hero = () => {
         loop
         muted={isMuted}
         playsInline
+        autoPlay={isMobile}
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
         <source src={heroVideo} type="video/mp4" />
@@ -85,11 +110,11 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Side: Play Video Button */}
-        <div 
+        {/* Right Side: Play Video Button (Desktop Only) */}
+        <div
           data-aos="zoom-in"
           data-aos-delay="600"
-          className="mt-8 md:mt-0 flex flex-row md:flex-col items-center gap-2 md:gap-3 cursor-pointer group self-start md:self-auto"
+          className={`mt-8 md:mt-0 flex flex-row md:flex-col items-center gap-2 md:gap-3 cursor-pointer group self-start md:self-auto ${isMobile ? 'hidden' : ''}`}
           onClick={toggleVideo}
         >
           <div className="w-12 h-12 md:w-20 md:h-20 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex justify-center items-center group-hover:scale-110 group-hover:bg-[#ff2a2a] transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_40px_rgba(255,42,42,0.6)]">

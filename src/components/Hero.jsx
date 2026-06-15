@@ -102,20 +102,24 @@ const Hero = () => {
         )}
 
         {/* Left Side: Text and Buttons */}
-        <div className="flex flex-col items-start text-left max-w-2xl w-full">
+        <div className="flex flex-col items-start text-left max-w-xl w-full md:max-w-2xl">
           {/* Main Heading */}
           <h1
             data-aos="fade-up"
-            className="text-white text-3xl md:text-5xl font-bold mb-4 tracking-tight"
+            className="text-white text-2xl md:text-5xl font-bold mb-2 md:mb-4 tracking-tight leading-tight"
           >
-            Hi, I’m Sneha S <br /> <span className="text-transparent [-webkit-text-stroke:1.5px_black]">Full Stack Engineer</span>
+            Hi, I’m Sneha S
           </h1>
 
+          <h2 className="text-white text-xl md:text-4xl font-bold mb-6 md:mb-8 tracking-tight">
+            Full Stack Engineer
+          </h2>
+
           {/* Subheading */}
-          <p 
+          <p
             data-aos="fade-up"
             data-aos-delay="200"
-            className="text-white text-sm md:text-lg font-semibold mb-8 max-w-md drop-shadow-md"
+            className="text-white text-xs md:text-lg font-semibold mb-6 md:mb-8 max-w-sm drop-shadow-md"
           >
             I build fast, scalable and modern web applications using React, Node.js and Tailwind CSS.
           </p>

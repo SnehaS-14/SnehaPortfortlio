@@ -18,7 +18,7 @@ console.log(`Dist directory exists: ${fs.existsSync(distPath)}`);
 
 app.use(express.static(distPath, { maxAge: '1h' }));
 
-app.get('*', (req, res) => {
+app.use((req, res) => {
   const indexPath = join(distPath, 'index.html');
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);

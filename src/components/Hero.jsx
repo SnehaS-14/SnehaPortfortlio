@@ -42,6 +42,12 @@ const Hero = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMobile]);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
+
   const toggleVideo = (e) => {
     e.stopPropagation();
     if (videoRef.current) {
@@ -75,25 +81,22 @@ const Hero = () => {
       {/* Content Container */}
       <div className="absolute inset-0 z-20 px-6 pb-20 md:pb-[8%] md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end text-left w-full">
 
-        {/* Left Side: Play Button (Mobile Only) */}
+        {/* Mobile Play Button - Positioned at Right Side */}
         {isMobile && (
-          <div
-            className="flex flex-row items-center gap-2 cursor-pointer group self-start mb-8 md:mb-0"
-            onClick={toggleVideo}
-          >
-            <div className="w-12 h-12 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex justify-center items-center group-hover:scale-110 group-hover:bg-[#ff2a2a] transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_40px_rgba(255,42,42,0.6)]">
+          <div className="absolute bottom-12 right-6 flex flex-col items-center gap-2 cursor-pointer group z-30" onClick={toggleVideo}>
+            <div className="w-16 h-16 rounded-full border-2 border-white/40 bg-black/30 backdrop-blur-md flex justify-center items-center group-hover:scale-110 group-hover:bg-[#ff2a2a] group-hover:border-white transition-all duration-500 shadow-[0_0_40px_rgba(255,255,255,0.15)] group-hover:shadow-[0_0_50px_rgba(255,42,42,0.7)]">
               {!isPlaying || isMuted ? (
-                <svg className="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               ) : (
-                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
                 </svg>
               )}
             </div>
-            <span className="text-white text-[10px] font-bold tracking-widest uppercase opacity-70 group-hover:opacity-100 transition-opacity">
-              {!isPlaying || isMuted ? "Play" : "Pause"}
+            <span className="text-white text-xs font-bold tracking-widest uppercase opacity-80 group-hover:opacity-100 transition-opacity">
+              {!isPlaying || isMuted ? "PLAY" : "PAUSE"}
             </span>
           </div>
         )}

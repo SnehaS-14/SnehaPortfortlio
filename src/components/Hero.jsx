@@ -102,16 +102,16 @@ const Hero = () => {
         )}
 
         {/* Left Side: Text and Buttons */}
-        <div className="flex flex-col items-start text-left max-w-xl w-full md:max-w-2xl">
+        <div className="flex flex-col items-start text-left w-full md:max-w-2xl md:w-auto pt-4 md:pt-0">
           {/* Main Heading */}
           <h1
             data-aos="fade-up"
-            className="text-white text-2xl md:text-5xl font-bold mb-2 md:mb-4 tracking-tight leading-tight"
+            className="text-white text-xl md:text-5xl font-bold mb-1 md:mb-4 tracking-tight leading-tight"
           >
             Hi, I’m Sneha S
           </h1>
 
-          <h2 className="text-white text-xl md:text-4xl font-bold mb-6 md:mb-8 tracking-tight">
+          <h2 className="text-white text-lg md:text-4xl font-bold mb-4 md:mb-8 tracking-tight line-clamp-1">
             Full Stack Engineer
           </h2>
 
@@ -119,24 +119,24 @@ const Hero = () => {
           <p
             data-aos="fade-up"
             data-aos-delay="200"
-            className="text-white text-xs md:text-lg font-semibold mb-6 md:mb-8 max-w-sm drop-shadow-md"
+            className="text-white text-xs md:text-base font-semibold mb-4 md:mb-8 max-w-xs md:max-w-sm drop-shadow-md leading-relaxed"
           >
             I build fast, scalable and modern web applications using React, Node.js and Tailwind CSS.
           </p>
 
           {/* Buttons */}
-          <div 
+          <div
             data-aos="fade-up"
             data-aos-delay="400"
-            className="flex flex-row flex-wrap items-center gap-3 w-full"
+            className="flex flex-row flex-wrap items-center gap-2 md:gap-3 w-full"
           >
             {/* Primary Button */}
-            <button className="px-4 py-2 md:px-6 md:py-2 text-xs md:text-base rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-md">
+            <button className="px-3 py-2 md:px-6 md:py-2 text-[11px] md:text-base rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-md whitespace-nowrap">
               View My Work
             </button>
-            
+
             {/* Secondary Button - Glassmorphism style */}
-            <button className="px-4 py-2 md:px-6 md:py-2 text-xs md:text-base rounded-full bg-black/40 border border-white text-white font-semibold hover:bg-black/60 transition-all duration-300 backdrop-blur-md">
+            <button className="px-3 py-2 md:px-6 md:py-2 text-[11px] md:text-base rounded-full bg-black/40 border border-white text-white font-semibold hover:bg-black/60 transition-all duration-300 backdrop-blur-md whitespace-nowrap">
               Contact Me
             </button>
           </div>

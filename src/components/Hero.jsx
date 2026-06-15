@@ -46,6 +46,7 @@ const Hero = () => {
     e.stopPropagation();
     if (videoRef.current) {
       if (videoRef.current.paused) {
+        videoRef.current.muted = false;
         videoRef.current.play();
         setIsPlaying(true);
         setIsMuted(false);

@@ -41,8 +41,8 @@ const About = () => {
         <div data-aos="fade-left" data-aos-delay="200" className="flex-1 text-white mt-8 md:mt-0 relative z-20">
           
           <h2 className="text-4xl md:text-5xl font-black text-black mb-4">Hello!</h2>
-          <p className="text-lg font-bold mb-12 leading-relaxed max-w-3xl text-red-50">
-            Hi, my name is <span className="text-black text-xl font-black mx-1 tracking-wide uppercase">Sneha S</span>, a full-stack engineer based in Coimbatore, India, dedicated to turning designs and requirements into responsive, component-based web applications that work seamlessly across devices.
+          <p className="text-lg font-bold mb-12 leading-relaxed max-w-4xl text-red-50">
+            Hi, my name is <span className="text-black text-xl font-black mx-1 tracking-wide uppercase">Sneha S</span>, a full-stack engineer who turns designs, wireframes, and requirements into responsive, component-based web applications that work seamlessly across devices. Strong in React and the Node.js ecosystem, REST API design, NoSQL and relational databases, testing, and server configuration. Comfortable owning an application end to end and quick to adopt new technologies and methodologies.
           </p>
 
           {/* Horizontal Skills Row (Transparent & Large) */}

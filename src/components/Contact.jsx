@@ -1,15 +1,68 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Contact = () => {
   const ref = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: ''
+  });
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
-  
+
   // Parallax translation for the big text
   const y = useTransform(scrollYProgress, [0, 1], ["-20%", "30%"]);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          message: ''
+        });
+        setTimeout(() => setSubmitStatus(null), 5000);
+      } else {
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus(null), 5000);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section ref={ref} id="contact" className="bg-[#0a0a0a] w-full min-h-screen relative overflow-hidden flex items-end pt-32 pb-0 md:pb-0 border-t border-gray-900">
@@ -36,31 +89,40 @@ const Contact = () => {
             Reach Us
           </div>
 
-          <form className="flex flex-col gap-12 md:gap-16 w-full">
+          <form className="flex flex-col gap-12 md:gap-16 w-full" onSubmit={handleSubmit}>
             <div className="flex flex-col md:flex-row gap-12 md:gap-20 w-full">
               {/* Left Column */}
               <div className="flex-1 flex flex-col gap-10">
                 <div className="relative">
-                  <input 
-                    type="text" 
-                    id="firstName" 
-                    placeholder="First Name" 
+                  <input
+                    type="text"
+                    id="firstName"
+                    placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
                     className="w-full bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium rounded-none"
                   />
                 </div>
                 <div className="relative">
-                  <input 
-                    type="text" 
-                    id="lastName" 
-                    placeholder="Last Name" 
+                  <input
+                    type="text"
+                    id="lastName"
+                    placeholder="Last Name"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
                     className="w-full bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium rounded-none"
                   />
                 </div>
                 <div className="relative">
-                  <input 
-                    type="email" 
-                    id="email" 
-                    placeholder="Email" 
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     className="w-full bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium rounded-none"
                   />
                 </div>
@@ -69,9 +131,12 @@ const Contact = () => {
               {/* Right Column */}
               <div className="flex-1 flex flex-col">
                 <div className="relative h-full flex flex-col">
-                  <textarea 
-                    id="message" 
-                    placeholder="Type your message here" 
+                  <textarea
+                    id="message"
+                    placeholder="Type your message here"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                     className="w-full h-full min-h-[120px] bg-transparent border-b border-white/40 pb-3 text-lg focus:outline-none focus:border-white transition-colors placeholder-white font-medium resize-none rounded-none"
                   ></textarea>
                 </div>
@@ -103,15 +168,25 @@ const Contact = () => {
                     For information on how to unsubscribe, please review our <a href="#" className="underline hover:text-white transition-colors">privacy policy</a>.
                   </p>
                   
-                  <button 
-                    type="submit" 
-                    className="px-8 py-3 rounded-full border border-white/40 text-white font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-[#ff2a2a] transition-all duration-300 group whitespace-nowrap self-start sm:self-auto"
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="px-8 py-3 rounded-full border border-white/40 text-white font-bold flex items-center justify-center gap-3 hover:bg-white hover:text-[#ff2a2a] transition-all duration-300 group whitespace-nowrap self-start sm:self-auto disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send
-                    <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
+                    {isLoading ? 'Sending...' : 'Send'}
+                    {!isLoading && (
+                      <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    )}
                   </button>
+
+                  {submitStatus === 'success' && (
+                    <p className="text-green-300 text-sm font-semibold mt-2">✓ Message sent successfully!</p>
+                  )}
+                  {submitStatus === 'error' && (
+                    <p className="text-red-300 text-sm font-semibold mt-2">✗ Failed to send message. Please try again.</p>
+                  )}
                 </div>
               </div>
             </div>

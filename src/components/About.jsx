@@ -45,26 +45,76 @@ const About = () => {
             Hi, my name is <span className="text-black text-xl font-black mx-1 tracking-wide uppercase">Sneha S</span>, a full-stack engineer who turns designs, wireframes, and requirements into responsive, component-based web applications that work seamlessly across devices. Strong in React and the Node.js ecosystem, REST API design, NoSQL and relational databases, testing, and server configuration. Comfortable owning an application end to end and quick to adopt new technologies and methodologies.
           </p>
 
-          {/* Horizontal Skills Row (Transparent & Large) */}
-          <div className="flex items-center gap-10 mt-8">
-            <img 
-              data-aos="zoom-in" data-aos-delay="300"
-              src={reactImage} 
-              alt="React" 
-              className="w-20 h-20 md:w-24 md:h-24 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-2xl" 
-            />
-            <img 
-              data-aos="zoom-in" data-aos-delay="450"
-              src={nodeImage} 
-              alt="Node.js" 
-              className="w-20 h-20 md:w-24 md:h-24 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-2xl" 
-            />
-            <img 
-              data-aos="zoom-in" data-aos-delay="600"
-              src={mongoImage} 
-              alt="MongoDB" 
-              className="w-20 h-20 md:w-24 md:h-24 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-2xl" 
-            />
+          {/* Tech Stack Section */}
+          <div className="mb-8">
+            <h3 className="text-sm font-bold text-black uppercase tracking-widest mb-6">Core Technologies</h3>
+            <div className="flex flex-wrap gap-6 md:gap-8">
+              <img
+                data-aos="zoom-in" data-aos-delay="300"
+                src={reactImage}
+                alt="React"
+                className="w-16 h-16 md:w-20 md:h-20 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-lg"
+                title="React.js"
+              />
+              <img
+                data-aos="zoom-in" data-aos-delay="350"
+                src={nodeImage}
+                alt="Node.js"
+                className="w-16 h-16 md:w-20 md:h-20 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-lg"
+                title="Node.js"
+              />
+              <img
+                data-aos="zoom-in" data-aos-delay="400"
+                src={mongoImage}
+                alt="MongoDB"
+                className="w-16 h-16 md:w-20 md:h-20 object-contain hover:scale-110 transition-transform duration-300 cursor-pointer drop-shadow-lg"
+                title="MongoDB"
+              />
+
+              {/* Additional Tech Stack with Icons */}
+              <div className="flex flex-wrap gap-4 items-center">
+                <div data-aos="zoom-in" data-aos-delay="450" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">⚡</span>
+                  <span className="text-xs font-bold text-black">Express</span>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="500" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">☁️</span>
+                  <span className="text-xs font-bold text-black">AWS</span>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="550" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">🗄️</span>
+                  <span className="text-xs font-bold text-black">MySQL</span>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="600" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">🔗</span>
+                  <span className="text-xs font-bold text-black">APIs</span>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="650" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">📘</span>
+                  <span className="text-xs font-bold text-black">TypeScript</span>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="700" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">🎨</span>
+                  <span className="text-xs font-bold text-black">Tailwind</span>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="750" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">📱</span>
+                  <span className="text-xs font-bold text-black">Native</span>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="800" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">🔐</span>
+                  <span className="text-xs font-bold text-black">JWT</span>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="850" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">🔀</span>
+                  <span className="text-xs font-bold text-black">Git</span>
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="900" className="flex flex-col items-center gap-2 cursor-pointer hover:scale-110 transition-transform">
+                  <span className="text-3xl md:text-4xl">⚙️</span>
+                  <span className="text-xs font-bold text-black">CI/CD</span>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>

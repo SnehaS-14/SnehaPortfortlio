@@ -54,7 +54,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
         <div className="relative z-10">
           {/* Number and Icon */}
           <div className="flex items-center justify-between mb-6">
-            <span className="text-#ff2a2a text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
+            <span className="text-red-600 text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
               0{project.number}
             </span>
             <span className="text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -63,7 +63,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
           </div>
 
           {/* Title */}
-          <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight group-hover:text-#ff2a2a transition-colors duration-300">
+          <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight group-hover:text-red-600 transition-colors duration-300">
             {project.title}
           </h3>
 
@@ -76,7 +76,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
               onClick={(e) => {
                 if (!isMobile) e.stopPropagation();
               }}
-              className="text-#ff2a2a text-sm font-bold mb-6 hover:underline inline-flex items-center gap-2"
+              className="text-red-600 text-sm font-bold mb-6 hover:underline inline-flex items-center gap-2 bg-red-50 px-3 py-1 rounded hover:bg-red-100 transition-colors"
             >
               {project.link}
               <span className="text-lg">↗</span>
@@ -272,7 +272,7 @@ const Projects = () => {
 
             {/* Modal Content */}
             <div className="mb-6">
-              <span className="text-#ff2a2a text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
+              <span className="text-red-600 text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
                 Project 0{selectedProject.number}
               </span>
             </div>

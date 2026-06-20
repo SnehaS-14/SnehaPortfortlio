@@ -74,7 +74,7 @@ const Projects = () => {
       number: 4,
       title: "Dreamstone CRM",
       subtitle: "Customer Relationship Management Platform",
-      link: "rightuptechno.com",
+      link: "www.rightuptechno.com/crm/login",
       tech: ["React.js", "Node.js", "Express.js", "MySQL", "REST APIs", "JWT", "AWS"],
       description: "Built a CRM platform for lead management, follow-ups, and sales-pipeline tracking, with secure REST APIs, role-based dashboards, and Google Sheets/Excel data import."
     },
@@ -90,7 +90,7 @@ const Projects = () => {
       number: 6,
       title: "GameFox Clothing",
       subtitle: "E-commerce Platform",
-      link: "gamefoxclothing.com",
+      link: "www.gamefoxclothing.com/shop/home",
       tech: ["React", "Node.js", "MySQL", "Stripe", "AWS"],
       description: "Built a full-featured e-commerce platform for clothing retail with product catalog management, shopping cart, secure payment processing, inventory tracking, and order management system."
     },

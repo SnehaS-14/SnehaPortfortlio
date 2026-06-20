@@ -17,15 +17,20 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Contact'];
+  const navLinks = [
+    { name: 'Home', id: 'home' },
+    { name: 'About', id: 'about' },
+    { name: 'Projects', id: 'projects' },
+    { name: 'Contact', id: 'contact' }
+  ];
 
   return (
-    <nav 
+    <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isOpen 
+        isOpen
           ? 'bg-[#ff2a2a] py-4'
-          : isScrolled 
-            ? 'bg-transparent py-4' 
+          : isScrolled
+            ? 'bg-white/95 backdrop-blur-md py-4 shadow-md'
             : 'bg-transparent py-6'
       }`}
     >
@@ -33,7 +38,7 @@ const Navbar = () => {
         
         {/* Left Side: Logo/Name */}
         <div className="flex items-center">
-          <a href="#" className="text-white text-2xl font-black tracking-tight">
+          <a href="#home" className={`text-2xl font-black tracking-tight ${isScrolled ? 'text-gray-900' : 'text-white'}`}>
             Sneha S<span className="text-red-500">.</span>
           </a>
         </div>
@@ -41,23 +46,29 @@ const Navbar = () => {
         {/* Center: Desktop Menu Links */}
         <div className="hidden md:flex space-x-8">
           {navLinks.map((link) => (
-            <a 
-              key={link} 
-              href={`#${link.toLowerCase()}`}
-              className="text-white/80 hover:text-white font-medium relative group transition-colors duration-300"
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              className={`font-medium relative group transition-colors duration-300 ${
+                isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white/80 hover:text-white'
+              }`}
             >
-              {link}
+              {link.name}
               {/* Smooth hover underline */}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${isScrolled ? 'bg-gray-900' : 'bg-red-500'}`}></span>
             </a>
           ))}
         </div>
 
         {/* Right Side: CTA Button */}
         <div className="hidden md:block">
-          <a 
-            href="#contact" 
-            className="px-6 py-2.5 rounded-full bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300 backdrop-blur-md"
+          <a
+            href="#contact"
+            className={`px-6 py-2.5 rounded-full border font-semibold transition-all duration-300 ${
+              isScrolled
+                ? 'bg-red-500 border-red-500 text-white hover:bg-red-600'
+                : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
+            }`}
           >
             Hire Me
           </a>
@@ -88,13 +99,13 @@ const Navbar = () => {
       >
         <div className="flex flex-col px-6 space-y-4">
           {navLinks.map((link) => (
-            <a 
-              key={link} 
-              href={`#${link.toLowerCase()}`}
+            <a
+              key={link.id}
+              href={`#${link.id}`}
               onClick={() => setIsOpen(false)}
               className="text-white hover:text-black font-bold text-lg border-b border-white/20 pb-2 transition-colors"
             >
-              {link}
+              {link.name}
             </a>
           ))}
           <div className="pt-4 pb-2">

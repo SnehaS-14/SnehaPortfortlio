@@ -77,6 +77,44 @@ const Projects = () => {
       link: "rightuptechno.com",
       tech: ["React.js", "Node.js", "Express.js", "MySQL", "REST APIs", "JWT", "AWS"],
       description: "Built a CRM platform for lead management, follow-ups, and sales-pipeline tracking, with secure REST APIs, role-based dashboards, and Google Sheets/Excel data import."
+    },
+    {
+      number: 5,
+      title: "AppUp",
+      subtitle: "Mobile App Platform",
+      link: "appup.ai",
+      tech: ["React.js", "Node.js", "MongoDB", "REST APIs", "AWS"],
+      description: "Developed a comprehensive mobile application platform enabling developers to create, manage, and deploy mobile applications with real-time analytics, user management, and cloud infrastructure integration."
+    },
+    {
+      number: 6,
+      title: "GameFox Clothing",
+      subtitle: "E-commerce Platform",
+      link: "gamefoxclothing.com",
+      tech: ["React", "Node.js", "MySQL", "Stripe", "AWS"],
+      description: "Built a full-featured e-commerce platform for clothing retail with product catalog management, shopping cart, secure payment processing, inventory tracking, and order management system."
+    },
+    {
+      number: 7,
+      title: "MyFruitBowl",
+      subtitle: "Food Delivery Service",
+      link: "myfruitbowl.in",
+      tech: ["React", "Node.js", "MongoDB", "Google Maps API", "Payment Gateway"],
+      description: "Developed a food delivery platform with real-time order tracking, dynamic pricing, vendor management, customer reviews, and integrated payment solutions for fresh produce and food items."
+    },
+    {
+      number: 8,
+      title: "BatGulf",
+      link: "batgulf.com",
+      tech: ["React", "Node.js", "REST APIs", "MySQL", "AWS"],
+      description: "Created a responsive business website with content management, service showcase, client portfolio, contact forms, and analytics integration for seamless client engagement and lead generation."
+    },
+    {
+      number: 9,
+      title: "ThirdBorn",
+      link: "thirdborn.in",
+      tech: ["React", "Node.js", "MongoDB", "Payment Integration", "AWS"],
+      description: "Built a feature-rich e-commerce and service platform with product/service listings, secure checkout, user authentication, order management, and customer support integration."
     }
   ];
 

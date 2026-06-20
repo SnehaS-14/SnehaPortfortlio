@@ -33,7 +33,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
 
   return (
     <motion.div
-      whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(255, 215, 0, 0.2)' }}
+      whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(255,42,42,0.2)' }}
       onClick={handleCardClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -45,7 +45,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
       >
         {/* Background gradient on hover */}
         <div
-          className={`absolute inset-0 bg-gradient-to-br from-yellow-50 to-transparent opacity-0 transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-gradient-to-br from-red-50 to-transparent opacity-0 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : ''
           }`}
         />
@@ -54,7 +54,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
         <div className="relative z-10">
           {/* Number and Icon */}
           <div className="flex items-center justify-between mb-6">
-            <span className="text-yellow-600 text-sm font-bold tracking-widest uppercase bg-yellow-50 px-3 py-1 rounded-full">
+            <span className="text-#ff2a2a text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
               0{project.number}
             </span>
             <span className="text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -63,7 +63,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
           </div>
 
           {/* Title */}
-          <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight group-hover:text-yellow-600 transition-colors duration-300">
+          <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight group-hover:text-#ff2a2a transition-colors duration-300">
             {project.title}
           </h3>
 
@@ -76,7 +76,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
               onClick={(e) => {
                 if (!isMobile) e.stopPropagation();
               }}
-              className="text-yellow-600 text-sm font-bold mb-6 hover:underline inline-flex items-center gap-2"
+              className="text-#ff2a2a text-sm font-bold mb-6 hover:underline inline-flex items-center gap-2"
             >
               {project.link}
               <span className="text-lg">↗</span>
@@ -94,7 +94,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
               <motion.span
                 key={idx}
                 whileHover={{ scale: 1.1 }}
-                className="px-3 py-2 bg-yellow-50 text-yellow-700 text-xs font-semibold rounded-lg hover:bg-yellow-100 transition-all duration-300 flex items-center gap-1"
+                className="px-3 py-2 bg-red-50 text-red-700 text-xs font-semibold rounded-lg hover:bg-red-100 transition-all duration-300 flex items-center gap-1"
               >
                 <span>{techIcons[item] || '⚙️'}</span>
                 {item}
@@ -272,7 +272,7 @@ const Projects = () => {
 
             {/* Modal Content */}
             <div className="mb-6">
-              <span className="text-yellow-600 text-sm font-bold tracking-widest uppercase bg-yellow-50 px-3 py-1 rounded-full">
+              <span className="text-#ff2a2a text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
                 Project 0{selectedProject.number}
               </span>
             </div>
@@ -298,7 +298,7 @@ const Projects = () => {
                 {selectedProject.tech.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-4 py-2 bg-yellow-50 text-yellow-700 font-semibold rounded-lg hover:bg-yellow-100 transition-all"
+                    className="px-4 py-2 bg-red-50 text-red-700 font-semibold rounded-lg hover:bg-red-100 transition-all"
                   >
                     {tech}
                   </span>
@@ -312,7 +312,7 @@ const Projects = () => {
                 href={`https://${selectedProject.link}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-500 text-gray-900 font-bold rounded-full hover:bg-yellow-600 transition-all transform hover:scale-105 shadow-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-red-500 text-gray-900 font-bold rounded-full hover:bg-#ff2a2a transition-all transform hover:scale-105 shadow-lg"
               >
                 Visit Project
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

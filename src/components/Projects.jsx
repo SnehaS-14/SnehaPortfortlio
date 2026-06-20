@@ -94,7 +94,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
               <motion.span
                 key={idx}
                 whileHover={{ scale: 1.1 }}
-                className="px-3 py-2 bg-red-50 text-red-700 text-xs font-semibold rounded-lg hover:bg-red-100 transition-all duration-300 flex items-center gap-1"
+                className="px-3 py-2 bg-[#ff2a2a] text-white text-xs font-semibold rounded-lg hover:bg-red-600 transition-all duration-300 flex items-center gap-1"
               >
                 <span>{techIcons[item] || '⚙️'}</span>
                 {item}
@@ -298,7 +298,7 @@ const Projects = () => {
                 {selectedProject.tech.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-4 py-2 bg-red-50 text-red-700 font-semibold rounded-lg hover:bg-red-100 transition-all"
+                    className="px-4 py-2 bg-[#ff2a2a] text-white font-semibold rounded-lg hover:bg-red-600 transition-all"
                   >
                     {tech}
                   </span>

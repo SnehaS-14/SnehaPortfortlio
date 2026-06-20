@@ -161,11 +161,11 @@ const Contact = () => {
               {/* Right text & button */}
               <div className="flex-1 flex flex-col gap-8 text-xs text-white/70 font-medium">
                 <p className="leading-relaxed max-w-[400px]">
-                  This site is protected by reCAPTCHA and the Google <a href="#" className="underline hover:text-white transition-colors">Privacy Policy</a> and <a href="#" className="underline hover:text-white transition-colors">Terms of Service</a> apply.
+                  This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">Terms of Service</a> apply.
                 </p>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-6">
                   <p className="max-w-[250px] leading-relaxed">
-                    For information on how to unsubscribe, please review our <a href="#" className="underline hover:text-white transition-colors">privacy policy</a>.
+                    For information on how to unsubscribe, please review our <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">privacy policy</a>.
                   </p>
                   
                   <button

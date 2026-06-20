@@ -64,7 +64,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-black">
+    <section id="home" className="relative w-full h-screen overflow-hidden bg-black">
       {/* Background Video */}
       <video
         ref={videoRef}
@@ -112,9 +112,9 @@ const Hero = () => {
             </a>
 
             {/* Secondary Button - Glassmorphism style */}
-            <button className="px-4 py-2 md:px-6 md:py-2 text-xs md:text-base rounded-full bg-black/40 border border-white text-white font-semibold hover:bg-black/60 transition-all duration-300 backdrop-blur-md">
+            <a href="#contact" className="px-4 py-2 md:px-6 md:py-2 text-xs md:text-base rounded-full bg-black/40 border border-white text-white font-semibold hover:bg-black/60 transition-all duration-300 backdrop-blur-md inline-block">
               Contact Me
-            </button>
+            </a>
           </div>
         </div>
 

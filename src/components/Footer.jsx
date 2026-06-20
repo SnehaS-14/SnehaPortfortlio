@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-1 md:items-end">
-          <a href="https://linkedin.com/in/sneha-s138" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors underline-offset-4 decoration-1">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/sneha-s138" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors underline-offset-4 decoration-1">LinkedIn</a>
         </div>
       </div>
     </footer>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const ProjectCard = ({ project, onClick }) => {
+const ProjectCard = ({ project, onClick, isMobile }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const techIcons = {
@@ -23,13 +23,21 @@ const ProjectCard = ({ project, onClick }) => {
     'Google Maps API': '📍'
   };
 
+  const handleCardClick = () => {
+    if (isMobile && project.link) {
+      window.open(`https://${project.link}`, '_blank');
+    } else {
+      onClick();
+    }
+  };
+
   return (
     <motion.div
-      whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(255,42,42,0.2)' }}
-      onClick={onClick}
+      whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(255, 215, 0, 0.2)' }}
+      onClick={handleCardClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="cursor-pointer group"
+      className={`${isMobile ? 'cursor-pointer' : 'cursor-pointer'} group`}
     >
       <div
         data-aos="fade-up"
@@ -37,7 +45,7 @@ const ProjectCard = ({ project, onClick }) => {
       >
         {/* Background gradient on hover */}
         <div
-          className={`absolute inset-0 bg-gradient-to-br from-[#ff2a2a]/5 to-transparent opacity-0 transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-gradient-to-br from-yellow-50 to-transparent opacity-0 transition-opacity duration-300 ${
             isHovered ? 'opacity-100' : ''
           }`}
         />
@@ -46,16 +54,16 @@ const ProjectCard = ({ project, onClick }) => {
         <div className="relative z-10">
           {/* Number and Icon */}
           <div className="flex items-center justify-between mb-6">
-            <span className="text-[#ff2a2a] text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
+            <span className="text-yellow-600 text-sm font-bold tracking-widest uppercase bg-yellow-50 px-3 py-1 rounded-full">
               0{project.number}
             </span>
             <span className="text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              ↗️
+              {isMobile ? '🔗' : '↗️'}
             </span>
           </div>
 
           {/* Title */}
-          <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight group-hover:text-[#ff2a2a] transition-colors duration-300">
+          <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight group-hover:text-yellow-600 transition-colors duration-300">
             {project.title}
           </h3>
 
@@ -65,8 +73,10 @@ const ProjectCard = ({ project, onClick }) => {
               href={`https://${project.link}`}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="text-[#ff2a2a] text-sm font-bold mb-6 hover:underline inline-flex items-center gap-2"
+              onClick={(e) => {
+                if (!isMobile) e.stopPropagation();
+              }}
+              className="text-yellow-600 text-sm font-bold mb-6 hover:underline inline-flex items-center gap-2"
             >
               {project.link}
               <span className="text-lg">↗</span>
@@ -84,7 +94,7 @@ const ProjectCard = ({ project, onClick }) => {
               <motion.span
                 key={idx}
                 whileHover={{ scale: 1.1 }}
-                className="px-3 py-2 bg-[#ff2a2a]/10 text-[#ff2a2a] text-xs font-semibold rounded-lg hover:bg-[#ff2a2a]/20 transition-all duration-300 flex items-center gap-1"
+                className="px-3 py-2 bg-yellow-50 text-yellow-700 text-xs font-semibold rounded-lg hover:bg-yellow-100 transition-all duration-300 flex items-center gap-1"
               >
                 <span>{techIcons[item] || '⚙️'}</span>
                 {item}
@@ -95,7 +105,7 @@ const ProjectCard = ({ project, onClick }) => {
 
         {/* Accent line */}
         <div
-          className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#ff2a2a] to-transparent transition-all duration-300 ${
+          className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-yellow-400 to-transparent transition-all duration-300 ${
             isHovered ? 'w-full' : 'w-0'
           }`}
         />
@@ -106,6 +116,16 @@ const ProjectCard = ({ project, onClick }) => {
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const projects = [
     {
@@ -217,14 +237,15 @@ const Projects = () => {
             <ProjectCard
               key={project.number}
               project={project}
-              onClick={() => setSelectedProject(project)}
+              isMobile={isMobile}
+              onClick={() => !isMobile && setSelectedProject(project)}
             />
           ))}
         </div>
       </div>
 
-      {/* Project Detail Modal */}
-      {selectedProject && (
+      {/* Project Detail Modal - Desktop Only */}
+      {selectedProject && !isMobile && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -251,7 +272,7 @@ const Projects = () => {
 
             {/* Modal Content */}
             <div className="mb-6">
-              <span className="text-[#ff2a2a] text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
+              <span className="text-yellow-600 text-sm font-bold tracking-widest uppercase bg-yellow-50 px-3 py-1 rounded-full">
                 Project 0{selectedProject.number}
               </span>
             </div>
@@ -277,7 +298,7 @@ const Projects = () => {
                 {selectedProject.tech.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="px-4 py-2 bg-gray-100 text-gray-900 font-semibold rounded-lg hover:bg-[#ff2a2a] hover:text-white transition-all"
+                    className="px-4 py-2 bg-yellow-50 text-yellow-700 font-semibold rounded-lg hover:bg-yellow-100 transition-all"
                   >
                     {tech}
                   </span>
@@ -291,7 +312,7 @@ const Projects = () => {
                 href={`https://${selectedProject.link}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#ff2a2a] text-white font-bold rounded-full hover:bg-red-600 transition-all transform hover:scale-105 shadow-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-yellow-500 text-gray-900 font-bold rounded-full hover:bg-yellow-600 transition-all transform hover:scale-105 shadow-lg"
               >
                 Visit Project
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

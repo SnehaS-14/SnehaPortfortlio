@@ -76,7 +76,7 @@ const ProjectCard = ({ project, onClick, isMobile }) => {
               onClick={(e) => {
                 if (!isMobile) e.stopPropagation();
               }}
-              className="text-red-600 text-sm font-bold mb-6 hover:underline inline-flex items-center gap-2 bg-red-50 px-3 py-1 rounded hover:bg-red-100 transition-colors"
+              className="text-white text-sm font-bold mb-6 hover:underline inline-flex items-center gap-2 bg-red-600 px-3 py-1 rounded hover:bg-red-700 transition-colors"
             >
               {project.link}
               <span className="text-lg">↗</span>

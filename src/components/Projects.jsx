@@ -1,51 +1,112 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
-const ProjectCard = ({ number, title, link, tech, description }) => {
+const ProjectCard = ({ project, onClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const techIcons = {
+    'React': '⚛️',
+    'React.js': '⚛️',
+    'Node.js': '🟢',
+    'Node': '🟢',
+    'MongoDB': '🍃',
+    'MySQL': '🗄️',
+    'Express.js': '⚡',
+    'Express': '⚡',
+    'AWS': '☁️',
+    'REST APIs': '🔗',
+    'JWT': '🔐',
+    'NFC': '📡',
+    'OCR': '📄',
+    'Stripe': '💳',
+    'Payment Gateway': '💰',
+    'Google Maps API': '📍'
+  };
+
   return (
-    <div
-      data-aos="fade-up"
-      className="bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col h-full"
+    <motion.div
+      whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(255,42,42,0.2)' }}
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="cursor-pointer group"
     >
-      <div className="flex items-start justify-between mb-4">
-        <span className="text-[#ff2a2a] text-sm font-bold tracking-widest uppercase">
-          0{number}
-        </span>
+      <div
+        data-aos="fade-up"
+        className="relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full overflow-hidden"
+      >
+        {/* Background gradient on hover */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-br from-[#ff2a2a]/5 to-transparent opacity-0 transition-opacity duration-300 ${
+            isHovered ? 'opacity-100' : ''
+          }`}
+        />
+
+        {/* Content */}
+        <div className="relative z-10">
+          {/* Number and Icon */}
+          <div className="flex items-center justify-between mb-6">
+            <span className="text-[#ff2a2a] text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
+              0{project.number}
+            </span>
+            <span className="text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              ↗️
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight group-hover:text-[#ff2a2a] transition-colors duration-300">
+            {project.title}
+          </h3>
+
+          {/* Link */}
+          {project.link && (
+            <a
+              href={`https://${project.link}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="text-[#ff2a2a] text-sm font-bold mb-6 hover:underline inline-flex items-center gap-2"
+            >
+              {project.link}
+              <span className="text-lg">↗</span>
+            </a>
+          )}
+
+          {/* Description */}
+          <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-6 flex-grow">
+            {project.description}
+          </p>
+
+          {/* Tech Stack */}
+          <div className="flex flex-wrap gap-2">
+            {project.tech.map((item, idx) => (
+              <motion.span
+                key={idx}
+                whileHover={{ scale: 1.1 }}
+                className="px-3 py-2 bg-[#ff2a2a]/10 text-[#ff2a2a] text-xs font-semibold rounded-lg hover:bg-[#ff2a2a]/20 transition-all duration-300 flex items-center gap-1"
+              >
+                <span>{techIcons[item] || '⚙️'}</span>
+                {item}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+
+        {/* Accent line */}
+        <div
+          className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r from-[#ff2a2a] to-transparent transition-all duration-300 ${
+            isHovered ? 'w-full' : 'w-0'
+          }`}
+        />
       </div>
-
-      <h3 className="text-2xl md:text-3xl font-black text-gray-900 mb-2 leading-tight">
-        {title}
-      </h3>
-
-      {link && (
-        <a
-          href={`https://${link}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[#ff2a2a] text-sm font-bold mb-4 hover:underline"
-        >
-          {link}
-        </a>
-      )}
-
-      <div className="flex flex-wrap gap-2 mb-6">
-        {tech.map((item, idx) => (
-          <span
-            key={idx}
-            className="px-3 py-1 bg-[#ff2a2a]/10 text-[#ff2a2a] text-xs font-semibold rounded-full"
-          >
-            {item}
-          </span>
-        ))}
-      </div>
-
-      <p className="text-gray-600 text-sm md:text-base leading-relaxed flex-grow">
-        {description}
-      </p>
-    </div>
+    </motion.div>
   );
 };
 
 const Projects = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+
   const projects = [
     {
       number: 1,
@@ -80,6 +141,14 @@ const Projects = () => {
     },
     {
       number: 5,
+      title: "Dreamstone Space",
+      subtitle: "Collaborative Workspace Platform",
+      link: "dreamstone.space",
+      tech: ["React", "Node.js", "MongoDB", "WebSocket", "AWS"],
+      description: "Created a collaborative workspace platform enabling real-time team communication, file sharing, project tracking, and video conferencing with intuitive UI and seamless integration."
+    },
+    {
+      number: 6,
       title: "AppUp",
       subtitle: "Mobile App Platform",
       link: "appup.ai",
@@ -87,7 +156,7 @@ const Projects = () => {
       description: "Developed a comprehensive mobile application platform enabling developers to create, manage, and deploy mobile applications with real-time analytics, user management, and cloud infrastructure integration."
     },
     {
-      number: 6,
+      number: 7,
       title: "GameFox Clothing",
       subtitle: "E-commerce Platform",
       link: "www.gamefoxclothing.com/shop/home",
@@ -95,7 +164,7 @@ const Projects = () => {
       description: "Built a full-featured e-commerce platform for clothing retail with product catalog management, shopping cart, secure payment processing, inventory tracking, and order management system."
     },
     {
-      number: 7,
+      number: 8,
       title: "MyFruitBowl",
       subtitle: "Food Delivery Service",
       link: "myfruitbowl.in",
@@ -103,21 +172,21 @@ const Projects = () => {
       description: "Developed a food delivery platform with real-time order tracking, dynamic pricing, vendor management, customer reviews, and integrated payment solutions for fresh produce and food items."
     },
     {
-      number: 8,
+      number: 9,
       title: "BatGulf",
       link: "batgulf.com",
       tech: ["React", "Node.js", "REST APIs", "MySQL", "AWS"],
       description: "Created a responsive business website with content management, service showcase, client portfolio, contact forms, and analytics integration for seamless client engagement and lead generation."
     },
     {
-      number: 9,
+      number: 10,
       title: "ThirdBorn",
       link: "thirdborn.in",
       tech: ["React", "Node.js", "MongoDB", "Payment Integration", "AWS"],
       description: "Built a feature-rich e-commerce and service platform with product/service listings, secure checkout, user authentication, order management, and customer support integration."
     },
     {
-      number: 10,
+      number: 11,
       title: "RightUpNext Innovations",
       subtitle: "Software Development Company",
       link: "rightupnextinnovations.com",
@@ -127,35 +196,112 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="bg-white pt-24 pb-32 px-6 md:px-12 w-full font-sans">
-      <div className="max-w-6xl mx-auto">
+    <section id="projects" className="bg-gradient-to-b from-white via-gray-50 to-white pt-24 pb-32 px-6 md:px-12 w-full font-sans">
+      <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div data-aos="fade-up" className="mb-16 md:mb-20">
-          <div className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white">
-            Portfolio
+        <div data-aos="fade-up" className="mb-20 md:mb-24">
+          <div className="inline-block border border-gray-300 rounded-full px-5 py-1.5 text-sm text-gray-600 font-bold mb-8 shadow-sm bg-white hover:shadow-md transition-all">
+            ✨ Portfolio
           </div>
           <h2 className="text-4xl md:text-6xl font-black text-gray-900 leading-[1.1] mb-6 tracking-tight">
             Featured Projects
           </h2>
-          <p className="text-gray-600 text-base md:text-lg max-w-2xl font-medium">
-            Full-stack applications built with React, Node.js, and modern databases. Each project demonstrates end-to-end ownership from design to deployment.
+          <p className="text-gray-600 text-base md:text-lg max-w-3xl font-medium leading-relaxed">
+            Full-stack applications built with React, Node.js, and modern databases. Each project demonstrates end-to-end ownership from design to deployment, showcasing expertise in creating scalable, user-centric solutions.
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {projects.map((project) => (
             <ProjectCard
               key={project.number}
-              number={project.number}
-              title={project.title}
-              link={project.link}
-              tech={project.tech}
-              description={project.description}
+              project={project}
+              onClick={() => setSelectedProject(project)}
             />
           ))}
         </div>
       </div>
+
+      {/* Project Detail Modal */}
+      {selectedProject && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setSelectedProject(null)}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        >
+          <motion.div
+            initial={{ scale: 0.9, y: 20 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.9, y: 20 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 md:p-12 shadow-2xl"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Modal Content */}
+            <div className="mb-6">
+              <span className="text-[#ff2a2a] text-sm font-bold tracking-widest uppercase bg-red-50 px-3 py-1 rounded-full">
+                Project 0{selectedProject.number}
+              </span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+              {selectedProject.title}
+            </h2>
+
+            {selectedProject.subtitle && (
+              <p className="text-gray-500 text-lg mb-6">{selectedProject.subtitle}</p>
+            )}
+
+            <p className="text-gray-700 text-lg leading-relaxed mb-8">
+              {selectedProject.description}
+            </p>
+
+            {/* Tech Stack */}
+            <div className="mb-8">
+              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-4">
+                Tech Stack
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {selectedProject.tech.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="px-4 py-2 bg-gray-100 text-gray-900 font-semibold rounded-lg hover:bg-[#ff2a2a] hover:text-white transition-all"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Visit Button */}
+            {selectedProject.link && (
+              <a
+                href={`https://${selectedProject.link}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#ff2a2a] text-white font-bold rounded-full hover:bg-red-600 transition-all transform hover:scale-105 shadow-lg"
+              >
+                Visit Project
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+            )}
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   );
 };

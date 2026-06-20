@@ -18,7 +18,7 @@ const ProjectCard = ({ number, title, link, tech, description }) => {
 
       {link && (
         <a
-          href={link}
+          href={`https://${link}`}
           target="_blank"
           rel="noopener noreferrer"
           className="text-[#ff2a2a] text-sm font-bold mb-4 hover:underline"

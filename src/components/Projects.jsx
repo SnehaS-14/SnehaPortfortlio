@@ -115,6 +115,14 @@ const Projects = () => {
       link: "thirdborn.in",
       tech: ["React", "Node.js", "MongoDB", "Payment Integration", "AWS"],
       description: "Built a feature-rich e-commerce and service platform with product/service listings, secure checkout, user authentication, order management, and customer support integration."
+    },
+    {
+      number: 10,
+      title: "RightUpNext Innovations",
+      subtitle: "Software Development Company",
+      link: "rightupnextinnovations.com",
+      tech: ["React", "Node.js", "Express.js", "MongoDB", "MySQL", "AWS", "REST APIs"],
+      description: "Contributed to a full-stack software development company delivering custom web applications, enterprise solutions, and digital transformation services for diverse clients across multiple industries."
     }
   ];
 
